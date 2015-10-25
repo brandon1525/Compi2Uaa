@@ -3,18 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/GUI/Zapphire.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/Compiler/Compiler.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/Compiler/Syntactic.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/Compiler/Semantic.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/HashTable.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/SyntacticTreeNode.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/DeclarationType.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/ExpressionType.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/ExpressionKind.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/ExpressionOp.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/NodeKind.java</file>
-            <file>file:/home/garu/NetBeansProjects/Zapphire_3.0%20(2)/src/CompilerResources/ExpressionConst.java</file>
+            <file>file:/C:/Users/Brandon/OneDrive/Documentos/Compi2Uaa/Zapphire-v4.1/src/GUI/Zapphire.java</file>
+            <file>file:/C:/Users/Brandon/OneDrive/Documentos/Compi2Uaa/Zapphire-v4.1/src/GUI/TabPanel.java</file>
+            <file>file:/C:/Users/Brandon/OneDrive/Documentos/Compi2Uaa/Zapphire-v4.1/src/GUI/FileChooser.java</file>
+            <file>file:/C:/Users/Brandon/OneDrive/Documentos/Compi2Uaa/Zapphire-v4.1/src/GUI/TextLineNumber.java</file>
         </group>
     </open-files>
 </project-private>

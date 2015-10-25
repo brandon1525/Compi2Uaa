@@ -39,6 +39,7 @@ import javax.swing.text.AttributeSet;
 import javax.swing.text.DefaultEditorKit;
 import javax.swing.text.Element;
 import javax.swing.text.SimpleAttributeSet;
+import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 import javax.swing.undo.CannotUndoException;
@@ -64,7 +65,7 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 
 	public static final Color NO_SAVE = Color.ORANGE;
 	public static final Color SAVE = Color.GRAY;
-	private static final Color DEFAULT_RESERVED_WORDS_COLOR = new Color( 17, 224, 134  );
+	private static final Color DEFAULT_RESERVED_WORDS_COLOR = new Color( 102, 217, 239  );
     private static final Color DEFAULT_COMMENTS_COLOR = new Color( 14, 209, 164 );
 	private static final Color DEFAULT_NUMBERS_INTEGER_COLOR = new Color( 11, 185, 188 );
 	private static final Color DEFAULT_SIGNS_COLOR = new Color( 179, 134, 208 );
@@ -179,8 +180,9 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 
 		textPane = new JTextPane();
 		styleContext = StyleContext.getDefaultStyleContext();
+                
 		textPane.setFont( new Font( "Monospaced", Font.TRUETYPE_FONT, 24 ) );
-		
+		textPane.setBackground(new Color(73, 72, 62));
 		textLineNumber = new TextLineNumber( textPane );
 		setViewportView( textPane );
 		setRowHeaderView( textLineNumber );
@@ -510,7 +512,7 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 	}
 
 	public void clearTextColors() {
-		AttributeSet aset = styleContext.addAttribute( SimpleAttributeSet.EMPTY, StyleConstants.Foreground, Color.BLACK );
+		AttributeSet aset = styleContext.addAttribute( SimpleAttributeSet.EMPTY, StyleConstants.Foreground, new Color(248, 248, 242) );
 		textPane.getStyledDocument().setCharacterAttributes( 0, textPane.getText().length(), aset, true );
 	}
 

@@ -84,9 +84,10 @@ public class Zapphire extends javax.swing.JFrame {
         jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Zapphire IDE 2.0");
-        setMinimumSize(new java.awt.Dimension(1200, 700));
-        setSize(new java.awt.Dimension(1400, 800));
+        setTitle("JUICY");
+        setFont(new java.awt.Font("Bradley Hand ITC", 0, 10)); // NOI18N
+        setMinimumSize(new java.awt.Dimension(1200, 600));
+        setPreferredSize(new java.awt.Dimension(1200, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -183,6 +184,7 @@ public class Zapphire extends javax.swing.JFrame {
         jSplitPane1.setName(""); // NOI18N
         jSplitPane1.setPreferredSize(new java.awt.Dimension(1000, 700));
 
+        jtpTabs.setBackground(new java.awt.Color(255, 255, 255));
         jtpTabs.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jtpTabsStateChanged(evt);
@@ -213,7 +215,7 @@ public class Zapphire extends javax.swing.JFrame {
         );
         jpErrorsLayout.setVerticalGroup(
             jpErrorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 157, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Errores", jpErrors);
@@ -226,7 +228,7 @@ public class Zapphire extends javax.swing.JFrame {
         );
         jpResultsLayout.setVerticalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 157, Short.MAX_VALUE)
+            .addGap(0, 150, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Resultados", jpResults);
@@ -264,7 +266,7 @@ public class Zapphire extends javax.swing.JFrame {
             jpHashTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpHashTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -302,7 +304,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -323,7 +325,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp2Layout.createSequentialGroup()
                 .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 506, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -344,7 +346,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 507, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -358,7 +360,7 @@ public class Zapphire extends javax.swing.JFrame {
         );
         jp4Layout.setVerticalGroup(
             jp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 531, Short.MAX_VALUE)
+            .addGap(0, 459, Short.MAX_VALUE)
         );
 
         jtpCompiler.addTab("Código intermedio", jp4);
@@ -648,7 +650,7 @@ public class Zapphire extends javax.swing.JFrame {
 		jSplitPane2.setDividerLocation( this.getWidth() - ( this.getWidth() / 3 - 50 ) );
 		jSplitPane1.setDividerLocation( this.getHeight() / 2 );
 		// Abrimos un archivo por defecto
-		new TabPanel( "/home/garu/Descargas/xd.zph" );
+		new TabPanel( "/xd.zph");
 	}
 
 	/**
