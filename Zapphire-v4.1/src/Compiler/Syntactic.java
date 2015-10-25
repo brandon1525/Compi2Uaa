@@ -50,7 +50,7 @@ public class Syntactic {
 		if( t != null ) {
 			root.add( t );
 			match( TokenType.SEMICOLON );
-			declarationList( root );
+			declarationList( root ); //Recursivo para ver si hay mas declaraciones
 		}
 		return t;
 	}
@@ -68,7 +68,7 @@ public class Syntactic {
 			//q = new SyntacticTreeNode( getComponetToken(), NodeKind.DECLARATION_NODE, getTypeKind() );
 			//t.add( q );
 			match( token );
-			variableList( p );
+			variableList( p ); //Ver las variables de esta declaracion y se envia como raíz el INT FLOAT O BOOL
 		}
 		return t;
 	}
@@ -82,7 +82,7 @@ public class Syntactic {
 			match( TokenType.ID );
 			if( token == TokenType.COMMA ) {
 				match( TokenType.COMMA );
-				variableList( root );
+				variableList( root ); //recursivo para ver si hay mas variables de este tipo
 			}
 		}
 	}
@@ -92,7 +92,7 @@ public class Syntactic {
 		SyntacticTreeNode t = statement();
 		if( t != null ) {
 			root.add( t );
-			statementList( root );
+			statementList( root );//Recursivo para ver la lista de sentencias
 		}
 	}
 	
@@ -159,12 +159,12 @@ public class Syntactic {
 		match( TokenType.RPARENT );
 		
 		match( TokenType.THEN );
-		t.add( block( "verdadero" ) );
+		t.add( block( "Caso Verdadero" ) );
 		if ( token == TokenType.ELSE ) {
 			match( TokenType.ELSE );
-			t.add( block( "falso" ) );
+			t.add( block( "Caso Falso" ) );
 		}
-		match( TokenType.FI );
+		match( TokenType.FI );//Debe haber un fi ya sea el caso verdadero o falso
 		return t;
 	}
 	
@@ -175,7 +175,7 @@ public class Syntactic {
 		match( TokenType.LPARENT );
 		t.add( exp() );
 		match( TokenType.RPARENT );
-		t.add( block( "bloque" ) );
+		t.add( block( "Bloque while" ) );
 		return t;
 	}
 	
@@ -183,7 +183,7 @@ public class Syntactic {
 	private SyntacticTreeNode doStmt() {
 		SyntacticTreeNode t = SyntacticTreeNode.newStatementNode( "do", StatementKind.DO, getLineToken() );
 		match( TokenType.DO );
-		t.add( block( "bloque" ) );
+		t.add( block( "Bloque do" ) );
 		match( TokenType.UNTIL );
 		match( TokenType.LPARENT );
 		t.add( exp() );
@@ -196,8 +196,9 @@ public class Syntactic {
 	private SyntacticTreeNode readStmt() {
 		SyntacticTreeNode t = SyntacticTreeNode.newStatementNode( "read", StatementKind.READ, getLineToken() );
 		match( TokenType.READ );
-		if( token == TokenType.ID )
+		if( token == TokenType.ID ){
 			t.add( SyntacticTreeNode.newExpressionNode( getComponetToken(), ExpressionKind.ID, getLineToken() ) ); 
+		}
 		match( TokenType.ID );
 		match( TokenType.SEMICOLON );
 		return t;
@@ -264,8 +265,13 @@ public class Syntactic {
 	private SyntacticTreeNode incDecStmt() {
 		SyntacticTreeNode t = new SyntacticTreeNode(), statementAssing, expressionOperator, expressionId, expressionConst;
 		if( token == TokenType.INC || token == TokenType.DEC ) {
-			String operator;
-			operator = getComponetToken().equals( "++" ) ? "+" : "-";
+			String operator=getComponetToken();
+			//operator = getComponetToken().equals( "++" ) ? "+" : "-";
+			if("++".equals(operator)){
+				operator="+";
+			}else{
+				operator="-";
+			}
 			match( token );
 			statementAssing = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
 			expressionId = SyntacticTreeNode.newExpressionNode( getComponetToken(), ExpressionKind.ID, getLineToken() );
@@ -444,7 +450,7 @@ public class Syntactic {
 	}
 	
 	private void getToken() {
-		this.token = TokenType.valueOf( tokens[++line][0] );
+		this.token = TokenType.valueOf(tokens[++line][0]);
 	}
 	
 	private String getComponetToken() {

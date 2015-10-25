@@ -51,11 +51,11 @@ import javax.swing.undo.UndoManager;
  */
 public class TabPanel extends JScrollPane implements ActionListener, KeyListener, CaretListener, UndoableEditListener {
 
-	private final Icon newIcon = new ImageIcon( getClass().getResource( "/Icons/16/new16.png" ) );
-	private final Icon closeTabDisable = new ImageIcon( getClass().getResource( "/Icons/16/closeTabDisable16.png" ) );
-	private final Icon closeTabEnable = new ImageIcon( getClass().getResource( "/Icons/16/closeTabEnable16.png" ) );
+    private final Icon newIcon = new ImageIcon( getClass().getResource( "/Icons/16/new16.png" ) );
+    private final Icon closeTabDisable = new ImageIcon( getClass().getResource( "/Icons/16/closeTabDisable16.png" ) );
+    private final Icon closeTabEnable = new ImageIcon( getClass().getResource( "/Icons/16/closeTabEnable16.png" ) );
 
-	private static final String[] RESERVED_WORDS = new String[]{
+    private static final String[] RESERVED_WORDS = new String[]{
 		"if", "then", "else", "fi", "do", "until", "while", "read", "write", "float", "int", "bool", "program"
 	};
 
@@ -66,9 +66,9 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 	public static final Color NO_SAVE = Color.ORANGE;
 	public static final Color SAVE = Color.GRAY;
 	private static final Color DEFAULT_RESERVED_WORDS_COLOR = new Color( 102, 217, 239  );
-    private static final Color DEFAULT_COMMENTS_COLOR = new Color( 14, 209, 164 );
-	private static final Color DEFAULT_NUMBERS_INTEGER_COLOR = new Color( 11, 185, 188 );
-	private static final Color DEFAULT_SIGNS_COLOR = new Color( 179, 134, 208 );
+    private static final Color DEFAULT_COMMENTS_COLOR = new Color( 249, 38, 114 );
+	private static final Color DEFAULT_NUMBERS_INTEGER_COLOR = new Color( 166, 226, 46 );
+	private static final Color DEFAULT_SIGNS_COLOR = new Color( 253, 152, 31 );
 
 	public static JTabbedPane tabbedPane;
 	public static JLabel lineColumn;
@@ -94,7 +94,7 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 		textPane = new JTextPane();
 		styleContext = StyleContext.getDefaultStyleContext();
 		textPane.setFont( new Font( "Monospaced", Font.TRUETYPE_FONT, 18 ) );
-		
+		textPane.setBackground(new Color(73, 72, 62));
 		textLineNumber = new TextLineNumber( textPane );
 		setViewportView( textPane );
 		setRowHeaderView( textLineNumber );
@@ -192,6 +192,7 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 		getPatterns();
 		
 		file = new FileManager( path );
+                System.out.println(file.getPath());
 		title = FileManager.getNameWithExtension( path );		// Obtenemos el nombre del archivo para colocarlo como nombre de la pestaña
 		tip = path;
 		textPane.setText( FileManager.open( path, false ) );		// Colocamos el contenido del archivo

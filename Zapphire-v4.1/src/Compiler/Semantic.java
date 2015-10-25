@@ -18,15 +18,13 @@ import javax.swing.tree.DefaultTreeModel;
  * @author Héctor Daniel Montañez Briano
  */
 public class Semantic {
-
-	public static final int SHIFT = 4;
-	public static final int SIZE = 211;
-
-	private int location;
-	private String errors = "";
-	private ArrayList<HashTable> hashTable;
-	private SyntacticTreeNode root;
-	private DefaultTreeModel dtm;
+    public static final int SHIFT = 4;
+    public static final int SIZE = 211;
+    private int location;
+    private String errors = "";
+    private ArrayList<HashTable> hashTable;
+    private SyntacticTreeNode root;
+    private DefaultTreeModel dtm;
 
 	public Semantic( SyntacticTreeNode root ) {
 		this.hashTable = new ArrayList<>();

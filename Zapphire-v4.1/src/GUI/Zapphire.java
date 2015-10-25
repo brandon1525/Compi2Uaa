@@ -649,8 +649,9 @@ public class Zapphire extends javax.swing.JFrame {
 
 		jSplitPane2.setDividerLocation( this.getWidth() - ( this.getWidth() / 3 - 50 ) );
 		jSplitPane1.setDividerLocation( this.getHeight() / 2 );
-		// Abrimos un archivo por defecto
-		new TabPanel( "/xd.zph");
+            // Abrimos un archivo por defecto
+            //TabPanel tabPanel = new TabPanel( "C:\\xd.zph");
+            
 	}
 
 	/**
