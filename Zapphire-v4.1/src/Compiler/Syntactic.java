@@ -261,7 +261,7 @@ public class Syntactic {
 		return expressionId;
 	}
 	
-	//
+	//++id --id
 	private SyntacticTreeNode incDecStmt() {
 		SyntacticTreeNode t = new SyntacticTreeNode(), statementAssing, expressionOperator, expressionId, expressionConst;
 		if( token == TokenType.INC || token == TokenType.DEC ) {
@@ -279,7 +279,7 @@ public class Syntactic {
 			t = statementAssing;
 			expressionOperator = SyntacticTreeNode.newExpressionNode( operator, ExpressionKind.OP, getLineToken() );
 			expressionOperator.setExpressionOp( operator.equals( "+" ) ? ExpressionOp.PLUS : ExpressionOp.MINUS );
-			expressionOperator.add( expressionId );
+			expressionOperator.add( SyntacticTreeNode.newExpressionNode(expressionId.getName(), ExpressionKind.ID, getLineToken()) );
 			expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
 			expressionConst.setValue( 1 );
 			expressionOperator.add( expressionConst );
