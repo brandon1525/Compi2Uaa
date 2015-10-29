@@ -23,6 +23,7 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
 	// Atributos
 	private String name;
 	private float value;
+        private String type;
 	private int line;
 
 	public SyntacticTreeNode() {
@@ -40,6 +41,7 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
 		//Atributos
 		this.name = null;
 		this.value = 0;
+                this.type = null;
 		this.line = -1;
 	}
 	
@@ -167,4 +169,12 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
 		this.userObject = name;
 	}
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+        
 }

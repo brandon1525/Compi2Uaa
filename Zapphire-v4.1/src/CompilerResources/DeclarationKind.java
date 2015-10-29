@@ -5,5 +5,5 @@ package CompilerResources;
  * @author garu
  */
 public enum DeclarationKind {
-	ID, TYPE, NULL
+    ID, TYPE, NULL
 }

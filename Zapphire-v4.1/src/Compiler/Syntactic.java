@@ -5,10 +5,7 @@ import Class.FileManager;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.SyntaxTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
-/**
- * @author Christian Israel López Villalobos
- * @author Héctor Daniel Montañez Briano
- */
+
 public class Syntactic {
 
 	private int line;
@@ -57,21 +54,21 @@ public class Syntactic {
 	
 	// declaración → tipo lista-variables
 	// tipo → int | float | bool
-	private SyntacticTreeNode declaration() {
-		SyntacticTreeNode t = null, p = null;
-		if( token == TokenType.INT || token == TokenType.FLOAT || token == TokenType.BOOL ) {
-			t = SyntacticTreeNode.newDeclarationNode( "declaración" );
-			p = SyntacticTreeNode.newDeclarationNode( getComponetToken(), DeclarationKind.TYPE, getLineToken() );
-			p.setDeclarationType( getDeclarationType() );
-			t.add( p );
-			//t = new SyntacticTreeNode( "declaración", NodeKind.DECLARATION_NODE );
-			//q = new SyntacticTreeNode( getComponetToken(), NodeKind.DECLARATION_NODE, getTypeKind() );
-			//t.add( q );
-			match( token );
-			variableList( p ); //Ver las variables de esta declaracion y se envia como raíz el INT FLOAT O BOOL
-		}
-		return t;
+    private SyntacticTreeNode declaration() {
+        SyntacticTreeNode t = null, p = null;
+	if( token == TokenType.INT || token == TokenType.FLOAT || token == TokenType.BOOL ) {
+            t = SyntacticTreeNode.newDeclarationNode( "declaración" );
+            p = SyntacticTreeNode.newDeclarationNode( getComponetToken(), DeclarationKind.TYPE, getLineToken() );
+            p.setDeclarationType( getDeclarationType() );
+            t.add( p );
+            //t = new SyntacticTreeNode( "declaración", NodeKind );
+            //q = new SyntacticTreeNode( getComponetToken(), NodeKind.DECLARATION_NODE, getTypeKind() );
+           // t.add( q );
+            match( token );
+            variableList( p ); //Ver las variables de esta declaracion y se envia como raíz el INT FLOAT O BOOL
 	}
+    return t;
+}
 	
 	// lista-variables → identificador, lista-variables | identificador
 	private void variableList( SyntacticTreeNode root ) {

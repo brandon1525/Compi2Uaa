@@ -7,7 +7,7 @@ import java.util.ArrayList;
  * @author Héctor Daniel Montañez Briano
  */
 public class HashTable {
-	private String name;
+    private String name;
 	private int location;
 	private ArrayList<Integer> lineList = new ArrayList<>();
 	private float value;
@@ -82,4 +82,5 @@ public class HashTable {
 		}
 		return temp;
 	}
+        
 }

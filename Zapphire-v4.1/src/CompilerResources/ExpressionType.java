@@ -10,5 +10,5 @@ package CompilerResources;
  * @author garu
  */
 public enum ExpressionType {
-	INT, FLOAT, BOOLEAN
+    INT, FLOAT, BOOLEAN
 }

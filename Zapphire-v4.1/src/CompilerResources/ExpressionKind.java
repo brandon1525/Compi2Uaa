@@ -10,5 +10,5 @@ package CompilerResources;
  * @author garu
  */
 public enum ExpressionKind {
-	OP, CONSTANT, ID
+    OP, CONSTANT, ID
 }

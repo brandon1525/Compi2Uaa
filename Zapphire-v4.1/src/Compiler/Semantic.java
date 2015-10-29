@@ -13,10 +13,6 @@ import java.util.Enumeration;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultTreeModel;
 
-/**
- * @author Christian Israel López Villalobos
- * @author Héctor Daniel Montañez Briano
- */
 public class Semantic {
     public static final int SHIFT = 4;
     public static final int SIZE = 211;
@@ -44,6 +40,7 @@ public class Semantic {
 	switch ( t.getNodeKind() ) {
             case DECLARATION:
 		switch ( t.getDeclarationKind() ) {
+                    //caso de int float bool 
                     case TYPE:
                         // De izq a der
 			( ( SyntacticTreeNode ) t.getNextNode() ).setDeclarationType( t.getDeclarationType() );
@@ -81,43 +78,69 @@ public class Semantic {
     }
 
     private void buildTree( SyntacticTreeNode t ) {
-	if ( t == null ) {
+	if ( t == null || t.getName()==null) {
             return;
 	}
 	if ( t.getNodeKind() == NodeKind.STATEMENT ) {
             SyntacticTreeNode nodeExpression = null, nodeId = null;
             switch ( t.getStatementKind() ) {
-		case IF:
+		        case IF:
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
+                    posEval(nodeExpression);
                     break;
                 case WHILE:
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
+                    posEval(nodeExpression);
                     break;
-		case DO:
+		        case DO:
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 1 );
+                    posEval(nodeExpression);
                     break;
-		case WRITE:
+		        case WRITE:
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
+                    if(nodeExpression.getExpressionKind()==ExpressionKind.ID){
+                        insertNewLineHashTable(nodeExpression.getName(),nodeExpression.getLine());
+                        nodeExpression=null;
+                    }
+                    posEval(nodeExpression);
                     break;
-		case ASSING:
+		        case ASSING:
                     nodeId = ( ( SyntacticTreeNode ) t.getChildAt( 0 ) );
-                    if ( insertNewLineHashTable( nodeId.getName(), nodeId.getLine() ) ) {
-                    nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 1 );
-                    } else {
-			nodeExpression = null;
-			nodeId = null;
+                    nodeExpression = ( (SyntacticTreeNode) t.getChildAt( 1 ) );
+                    if(insertNewLineHashTable(nodeId.getName(), nodeId.getLine())){
+                        switch(nodeExpression.getExpressionKind()){
+                            case OP:
+                                posEval(nodeExpression);
+                                break;
+                            case ID:
+                                nodeExpression.setValue(getValueInHashTable(nodeExpression.getName()));
+                                nodeExpression.setExpressionConst(getTypeInHashTable(nodeExpression.getName()));
+                                break;
+                        }
+                        
+                       if(getTypeInHashTable(nodeId.getName())==nodeExpression.getExpressionConst() ||
+                               getTypeInHashTable(nodeId.getName())==ExpressionConst.CONST_FLOAT ||
+                               (getTypeInHashTable(nodeId.getName())==ExpressionConst.CONST_BOOL &&
+                               nodeExpression.getExpressionConst()==ExpressionConst.CONST_INT && 
+                               (nodeExpression.getValue()==0 || nodeExpression.getValue()==1)
+                               )
+                        ){
+                           nodeId.setValue(nodeExpression.getValue());
+                           nodeId.setExpressionConst(nodeExpression.getExpressionConst());
+                           setValueInHashTable(nodeId.getName(), nodeExpression.getValue());
+                           t.setValue(nodeExpression.getValue());
+                           t.setExpressionConst(nodeExpression.getExpressionConst());
+                           
+                       }else{
+                           errors=errors+"accion incorrecta "+nodeId.getLine()+" \n";
+                       } 
                     }
                     break;
+                default:
+                    System.out.println("algo extraño "+t.getName());
+                    break;
             }
-            posEval( nodeExpression );
-            // Verificación del tipo del id y del tipo del valor obtenido de la expresión
-            if ( t.getStatementKind() == StatementKind.ASSING ) {
-		if ( nodeId != null && nodeId.getExpressionType() == nodeExpression.getExpressionType() ) {
-                    setValueInHashTable( nodeId.getName(), nodeExpression.getValue() );
-                    t.setValue( nodeExpression.getValue() );
-                    t.setExpressionConst( nodeExpression.getExpressionConst() );
-		}
-            }
+            
 	}
 	buildTree( ( SyntacticTreeNode ) t.getNextNode() );
     }
@@ -145,7 +168,7 @@ public class Semantic {
 	float rightChildValue = 0;	// Valor del hijo derecho
 	ExpressionConst leftChildConst = ExpressionConst.NULL;
 	ExpressionConst rightChildConst = ExpressionConst.NULL;
-
+        
 	// Verificamos el hijo izquierdo
 	switch ( leftChild.getExpressionKind() ) {
             case ID:
@@ -154,8 +177,7 @@ public class Semantic {
                     leftChildValue = getValueInHashTable( leftChild.getName() );
                     leftChild.setValue( leftChildValue );
                     leftChildConst = getTypeInHashTable( leftChild.getName() );
-                    leftChild.setExpressionConst( leftChildConst );
-		}
+                    leftChild.setExpressionConst( leftChildConst );		}
 		break;
             case CONSTANT: case OP:
                 leftChildValue = leftChild.getValue();
@@ -186,7 +208,7 @@ public class Semantic {
 	}
 
 	// Se le asigna el tipo al nodo de operacion
-	if ( leftChildConst == ExpressionConst.CONST_FLOAT || rightChildConst == ExpressionConst.CONST_FLOAT ) {
+	if ( leftChildConst == ExpressionConst.CONST_FLOAT || rightChildConst == ExpressionConst.CONST_FLOAT) {
             t.setExpressionConst( ExpressionConst.CONST_FLOAT );
 	} else {
             t.setExpressionConst( ExpressionConst.CONST_INT );

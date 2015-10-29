@@ -1,6 +1,8 @@
 program{
 	int x,y,z;
 	float a, b, c;
+	int w;
+	bool xx;
 	x:=23;
 	y:=2+3-1;
 	z:=y+7;
