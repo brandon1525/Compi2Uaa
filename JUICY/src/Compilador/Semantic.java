@@ -103,7 +103,19 @@ public class Semantic {
                     posEval(nodeExpression);
                     
                     break;
-		case WRITE: case READ:
+                case READ:
+                    nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
+                    if(nodeExpression.getExpressionKind()==ExpressionKind.ID){
+                        insertNewLineHashTable(nodeExpression.getName(),nodeExpression.getLine());
+                        posEval(nodeExpression);
+                        nodeExpression.setValue(getValueInHashTable(nodeExpression.getName()));
+                        nodeExpression.setExpressionConst(getTypeInHashTable(nodeExpression.getName()));
+                        t.setValue(nodeExpression.getValue());
+                        t.setExpressionConst(nodeExpression.getExpressionConst());
+                        
+                    }
+                    break;
+		case WRITE:
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
                     if(nodeExpression.getExpressionKind()==ExpressionKind.ID){
                         insertNewLineHashTable(nodeExpression.getName(),nodeExpression.getLine());
