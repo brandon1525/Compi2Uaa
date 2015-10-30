@@ -236,36 +236,39 @@ public class Semantic {
             t.setExpressionConst( ExpressionConst.CONST_INT );
             
 	}
-        if((leftChildConst==ExpressionConst.CONST_INT || leftChild.getExpressionConst()==ExpressionConst.CONST_INT)&& (rightChildConst==ExpressionConst.CONST_INT || rightChild.getExpressionConst()==ExpressionConst.CONST_INT)){
-            leftChildValue=(int)leftChildValue;
-            rightChildValue=(int)rightChildValue;
-        }else{
-            
-        }
+        
 	// Asignación de valor
 	switch ( t.getExpressionOp() ) {
             case PLUS:
-		t.setValue( leftChildValue + rightChildValue );
+		//
                 if(t.getExpressionConst()==ExpressionConst.CONST_INT){
                     t.setValue((int)(leftChildValue+rightChildValue));
+                }else{
+                    t.setValue( leftChildValue + rightChildValue );
                 }
 		break;
             case MINUS:
-		t.setValue( leftChildValue - rightChildValue );
+		
                 if(t.getExpressionConst()==ExpressionConst.CONST_INT){
                     t.setValue((int)(leftChildValue-rightChildValue));
+                }else{
+                    t.setValue( leftChildValue - rightChildValue );
                 }
 		break;
             case MULTI:
-		t.setValue( leftChildValue * rightChildValue );
+		
                 if(t.getExpressionConst()==ExpressionConst.CONST_INT){
                     t.setValue((int)(leftChildValue*rightChildValue));
+                }else{
+                    t.setValue( leftChildValue * rightChildValue );
                 }
 		break;
             case DIV:
-		t.setValue( leftChildValue / rightChildValue );
+		
                 if(t.getExpressionConst()==ExpressionConst.CONST_INT){
                     t.setValue((int)(leftChildValue*rightChildValue));
+                }else{
+                    t.setValue( leftChildValue / rightChildValue );
                 }
 		break;
             case LESS:
@@ -328,9 +331,9 @@ public class Semantic {
 		case EXPRESSION:
                     if ( node.getExpressionKind() == ExpressionKind.OP || node.getExpressionKind() == ExpressionKind.ID ) {
 			if ( node.getExpressionConst() != ExpressionConst.CONST_FLOAT ) {
-                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
-			} else {
                             node.setName( node.getName() + "    [ " + (int)node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
+			} else {
+                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			}
                     }
                     break;
@@ -341,7 +344,7 @@ public class Semantic {
 		case STATEMENT:
                     if( node.getStatementKind() == StatementKind.ASSING ) {
 			if ( node.getExpressionConst() != ExpressionConst.CONST_FLOAT ) {
-                            node.setName( node.getName() + "    [ " + Math.round(node.getValue()) + " ] [ "+node.getExpressionConst()+" ]" );
+                            node.setName( node.getName() + "    [ " + (int)node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			} else {
                             node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
                             
