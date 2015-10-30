@@ -33,9 +33,9 @@ public class Zapphire extends javax.swing.JFrame {
     private void initComponents() {
 
         jtbTools = new javax.swing.JToolBar();
+        jbSave = new javax.swing.JButton();
         jbNew = new javax.swing.JButton();
         jbOpen = new javax.swing.JButton();
-        jbSave = new javax.swing.JButton();
         jbFind = new javax.swing.JButton();
         jbCompile = new javax.swing.JButton();
         jlLineColumn = new javax.swing.JLabel();
@@ -63,8 +63,8 @@ public class Zapphire extends javax.swing.JFrame {
         jp4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
-        jmiNew = new javax.swing.JMenuItem();
         jmiOpen = new javax.swing.JMenuItem();
+        jmiNew = new javax.swing.JMenuItem();
         jmiSave = new javax.swing.JMenuItem();
         jmiSaveAs = new javax.swing.JMenuItem();
         jmiExit = new javax.swing.JMenuItem();
@@ -87,43 +87,18 @@ public class Zapphire extends javax.swing.JFrame {
         setTitle("JUICY");
         setFont(new java.awt.Font("Bradley Hand ITC", 0, 10)); // NOI18N
         setMinimumSize(new java.awt.Dimension(1200, 600));
-        setPreferredSize(new java.awt.Dimension(1200, 600));
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
             }
         });
 
+        jtbTools.setBackground(new java.awt.Color(0, 0, 0));
         jtbTools.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jtbTools.setRollover(true);
         jtbTools.setPreferredSize(new java.awt.Dimension(174, 46));
 
-        jbNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/new32.png"))); // NOI18N
-        jbNew.setToolTipText("Nuevo archivo (Ctrl+N)");
-        jbNew.setBorderPainted(false);
-        jbNew.setFocusable(false);
-        jbNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbNewActionPerformed(evt);
-            }
-        });
-        jtbTools.add(jbNew);
-
-        jbOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/open32.png"))); // NOI18N
-        jbOpen.setToolTipText("Abrir archivo (Ctrl+O)");
-        jbOpen.setBorderPainted(false);
-        jbOpen.setFocusable(false);
-        jbOpen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jbOpen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jbOpen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbOpenActionPerformed(evt);
-            }
-        });
-        jtbTools.add(jbOpen);
-
+        jbSave.setBackground(new java.awt.Color(0, 0, 0));
         jbSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/save32.png"))); // NOI18N
         jbSave.setToolTipText("Guardar archivo (Ctrl+S)");
         jbSave.setBorderPainted(false);
@@ -137,6 +112,35 @@ public class Zapphire extends javax.swing.JFrame {
         });
         jtbTools.add(jbSave);
 
+        jbNew.setBackground(new java.awt.Color(0, 0, 0));
+        jbNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/new32.png"))); // NOI18N
+        jbNew.setToolTipText("Nuevo archivo (Ctrl+N)");
+        jbNew.setBorderPainted(false);
+        jbNew.setFocusable(false);
+        jbNew.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbNew.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbNewActionPerformed(evt);
+            }
+        });
+        jtbTools.add(jbNew);
+
+        jbOpen.setBackground(new java.awt.Color(0, 0, 0));
+        jbOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/open32.png"))); // NOI18N
+        jbOpen.setToolTipText("Abrir archivo (Ctrl+O)");
+        jbOpen.setBorderPainted(false);
+        jbOpen.setFocusable(false);
+        jbOpen.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jbOpen.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jbOpen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbOpenActionPerformed(evt);
+            }
+        });
+        jtbTools.add(jbOpen);
+
+        jbFind.setBackground(new java.awt.Color(0, 0, 0));
         jbFind.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/find32.png"))); // NOI18N
         jbFind.setToolTipText("Buscar (Ctrl+F)");
         jbFind.setBorderPainted(false);
@@ -150,6 +154,7 @@ public class Zapphire extends javax.swing.JFrame {
         });
         jtbTools.add(jbFind);
 
+        jbCompile.setBackground(new java.awt.Color(0, 0, 0));
         jbCompile.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/32/compile32.png"))); // NOI18N
         jbCompile.setToolTipText("Compilar(Ctrl+R)");
         jbCompile.setBorderPainted(false);
@@ -192,6 +197,7 @@ public class Zapphire extends javax.swing.JFrame {
         });
         jSplitPane1.setLeftComponent(jtpTabs);
 
+        jtpOut.setBackground(new java.awt.Color(204, 255, 255));
         jtpOut.setTabPlacement(javax.swing.JTabbedPane.BOTTOM);
         jtpOut.setToolTipText("");
         jtpOut.setMinimumSize(new java.awt.Dimension(400, 100));
@@ -203,7 +209,9 @@ public class Zapphire extends javax.swing.JFrame {
         jScrollPane2.setPreferredSize(new java.awt.Dimension(0, 0));
 
         jtaErrors.setEditable(false);
+        jtaErrors.setBackground(new java.awt.Color(0, 0, 0));
         jtaErrors.setFont(new java.awt.Font("Monospaced", 0, 18)); // NOI18N
+        jtaErrors.setForeground(new java.awt.Color(255, 51, 51));
         jtaErrors.setRows(5);
         jScrollPane2.setViewportView(jtaErrors);
 
@@ -215,10 +223,13 @@ public class Zapphire extends javax.swing.JFrame {
         );
         jpErrorsLayout.setVerticalGroup(
             jpErrorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Errores", jpErrors);
+
+        jpResults.setBackground(new java.awt.Color(0, 0, 0));
+        jpResults.setForeground(new java.awt.Color(204, 255, 255));
 
         javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
         jpResults.setLayout(jpResultsLayout);
@@ -228,10 +239,13 @@ public class Zapphire extends javax.swing.JFrame {
         );
         jpResultsLayout.setVerticalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 72, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Resultados", jpResults);
+
+        jpHashTable.setBackground(new java.awt.Color(0, 0, 0));
+        jpHashTable.setForeground(new java.awt.Color(204, 255, 255));
 
         jtHashTable.setAutoCreateRowSorter(true);
         jtHashTable.setModel(new javax.swing.table.DefaultTableModel(
@@ -266,7 +280,7 @@ public class Zapphire extends javax.swing.JFrame {
             jpHashTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpHashTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -279,8 +293,11 @@ public class Zapphire extends javax.swing.JFrame {
         jtpCompiler.setMinimumSize(new java.awt.Dimension(0, 0));
         jtpCompiler.setPreferredSize(new java.awt.Dimension(400, 300));
 
+        jp1.setBackground(new java.awt.Color(0, 0, 0));
         jp1.setMinimumSize(new java.awt.Dimension(400, 300));
 
+        jtLexical.setBackground(new java.awt.Color(51, 153, 255));
+        jtLexical.setForeground(new java.awt.Color(255, 255, 255));
         jtLexical.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -304,12 +321,15 @@ public class Zapphire extends javax.swing.JFrame {
             jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jtpCompiler.addTab("Léxico", jp1);
 
+        jp2.setBackground(new java.awt.Color(0, 0, 0));
+
+        jtSyntactic.setBackground(new java.awt.Color(51, 153, 255));
         jScrollPane1.setViewportView(jtSyntactic);
 
         javax.swing.GroupLayout jp2Layout = new javax.swing.GroupLayout(jp2);
@@ -324,13 +344,16 @@ public class Zapphire extends javax.swing.JFrame {
         jp2Layout.setVerticalGroup(
             jp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp2Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
-                .addContainerGap())
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addGap(13, 13, 13))
         );
 
         jtpCompiler.addTab("Sintáctico", jp2);
 
+        jp3.setBackground(new java.awt.Color(0, 0, 0));
+
+        jtSemantic.setBackground(new java.awt.Color(51, 153, 255));
         jScrollPane5.setViewportView(jtSemantic);
 
         javax.swing.GroupLayout jp3Layout = new javax.swing.GroupLayout(jp3);
@@ -346,7 +369,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 437, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -360,7 +383,7 @@ public class Zapphire extends javax.swing.JFrame {
         );
         jp4Layout.setVerticalGroup(
             jp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 459, Short.MAX_VALUE)
+            .addGap(0, 467, Short.MAX_VALUE)
         );
 
         jtpCompiler.addTab("Código intermedio", jp4);
@@ -369,17 +392,9 @@ public class Zapphire extends javax.swing.JFrame {
 
         getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
 
-        jmFile.setText("Archivo");
+        jMenuBar1.setBackground(new java.awt.Color(0, 153, 255));
 
-        jmiNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
-        jmiNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/new16.png"))); // NOI18N
-        jmiNew.setText("Nuevo");
-        jmiNew.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jmiNewActionPerformed(evt);
-            }
-        });
-        jmFile.add(jmiNew);
+        jmFile.setText("Archivo");
 
         jmiOpen.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
         jmiOpen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/open16.png"))); // NOI18N
@@ -390,6 +405,16 @@ public class Zapphire extends javax.swing.JFrame {
             }
         });
         jmFile.add(jmiOpen);
+
+        jmiNew.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
+        jmiNew.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/new16.png"))); // NOI18N
+        jmiNew.setText("Nuevo");
+        jmiNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmiNewActionPerformed(evt);
+            }
+        });
+        jmFile.add(jmiNew);
 
         jmiSave.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_MASK));
         jmiSave.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Icons/16/save16.png"))); // NOI18N
@@ -644,7 +669,7 @@ public class Zapphire extends javax.swing.JFrame {
 		//setExtendedState( JFrame.MAXIMIZED_BOTH );
 		enableButtons( false );
 		setDefaultCloseOperation( javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE );
-		setIconImage( new ImageIcon( getClass().getResource( "/Icons/zapphire.png" ) ).getImage() );
+		setIconImage( new ImageIcon( getClass().getResource( "/Icons/weed.png" ) ).getImage() );
 		jtpTabs.requestFocus();
 
 		jSplitPane2.setDividerLocation( this.getWidth() - ( this.getWidth() / 3 - 50 ) );
