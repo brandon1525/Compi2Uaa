@@ -285,7 +285,7 @@ public class Syntactic {
 			expressionOperator.setExpressionOp( operator.equals( "+" ) ? ExpressionOp.PLUS : ExpressionOp.MINUS );
 			expressionOperator.add( SyntacticTreeNode.newExpressionNode(expressionId.getName(), ExpressionKind.ID, getLineToken()) );
 			expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
-                        //expressionConst.setExpressionConst(ExpressionConst.CONST_INT);
+                        expressionConst.setExpressionConst(ExpressionConst.CONST_INT);
 			expressionConst.setValue( 1 );
 			expressionOperator.add( expressionConst );
 			t.add( expressionOperator );
