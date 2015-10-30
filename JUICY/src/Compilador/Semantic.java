@@ -266,7 +266,7 @@ public class Semantic {
             case DIV:
 		
                 if(t.getExpressionConst()==ExpressionConst.CONST_INT){
-                    t.setValue((int)(leftChildValue*rightChildValue));
+                    t.setValue((int)(leftChildValue/rightChildValue));
                 }else{
                     t.setValue( leftChildValue / rightChildValue );
                 }
