@@ -110,9 +110,14 @@ public class Semantic {
                         posEval(nodeExpression);
                         nodeExpression.setValue(getValueInHashTable(nodeExpression.getName()));
                         nodeExpression.setExpressionConst(getTypeInHashTable(nodeExpression.getName()));
+                        t.setValue(nodeExpression.getValue());
+                        t.setExpressionConst(nodeExpression.getExpressionConst());
                         
                     }else{
                         posEval(nodeExpression);
+                        
+                        t.setValue(nodeExpression.getValue());
+                        t.setExpressionConst(nodeExpression.getExpressionConst());
                     }
                     //posEval(nodeExpression);
                     break;
