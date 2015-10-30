@@ -2,6 +2,7 @@ package GUI;
 
 import Class.FileManager;
 import Compiler.Compiler;
+import java.awt.Color;
 import java.awt.Font;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -16,10 +17,11 @@ import javax.swing.text.Highlighter;
  * @author Christian Israel López Villalobos
  * @author Héctor Daniel Montañez Briano
  */
-public class Zapphire extends javax.swing.JFrame {
+public class Juicy extends javax.swing.JFrame {
 
-	public Zapphire() {
+	public Juicy() {
 		initComponents();
+                this.setExtendedState(MAXIMIZED_BOTH);
 		init();
 	}
 
@@ -170,8 +172,8 @@ public class Zapphire extends javax.swing.JFrame {
 
         getContentPane().add(jtbTools, java.awt.BorderLayout.NORTH);
 
-        jlLineColumn.setBackground(new java.awt.Color(19, 139, 191));
-        jlLineColumn.setForeground(new java.awt.Color(243, 243, 243));
+        jlLineColumn.setBackground(new java.awt.Color(0, 0, 0));
+        jlLineColumn.setForeground(new java.awt.Color(0, 255, 204));
         jlLineColumn.setText("    linea 1, columna 1");
         jlLineColumn.setToolTipText("");
         jlLineColumn.setOpaque(true);
@@ -189,7 +191,9 @@ public class Zapphire extends javax.swing.JFrame {
         jSplitPane1.setName(""); // NOI18N
         jSplitPane1.setPreferredSize(new java.awt.Dimension(1000, 700));
 
-        jtpTabs.setBackground(new java.awt.Color(255, 255, 255));
+        jtpTabs.setBackground(new java.awt.Color(0, 0, 0));
+        jtpTabs.setForeground(new java.awt.Color(255, 255, 255));
+        jtpTabs.setFont(new java.awt.Font("Comic Sans MS", 0, 11)); // NOI18N
         jtpTabs.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 jtpTabsStateChanged(evt);
@@ -219,11 +223,11 @@ public class Zapphire extends javax.swing.JFrame {
         jpErrors.setLayout(jpErrorsLayout);
         jpErrorsLayout.setHorizontalGroup(
             jpErrorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
         );
         jpErrorsLayout.setVerticalGroup(
             jpErrorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Errores", jpErrors);
@@ -235,19 +239,21 @@ public class Zapphire extends javax.swing.JFrame {
         jpResults.setLayout(jpResultsLayout);
         jpResultsLayout.setHorizontalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 792, Short.MAX_VALUE)
+            .addGap(0, 794, Short.MAX_VALUE)
         );
         jpResultsLayout.setVerticalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
+            .addGap(0, 243, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Resultados", jpResults);
 
         jpHashTable.setBackground(new java.awt.Color(0, 0, 0));
-        jpHashTable.setForeground(new java.awt.Color(204, 255, 255));
+        jpHashTable.setForeground(new java.awt.Color(0, 204, 204));
 
         jtHashTable.setAutoCreateRowSorter(true);
+        jtHashTable.setBackground(new java.awt.Color(0, 0, 0));
+        jtHashTable.setForeground(new java.awt.Color(255, 255, 255));
         jtHashTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -264,6 +270,7 @@ public class Zapphire extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jtHashTable.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtHashTable.setRequestFocusEnabled(false);
         jScrollPane4.setViewportView(jtHashTable);
 
@@ -273,14 +280,14 @@ public class Zapphire extends javax.swing.JFrame {
             jpHashTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpHashTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 768, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 774, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jpHashTableLayout.setVerticalGroup(
             jpHashTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpHashTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -290,13 +297,13 @@ public class Zapphire extends javax.swing.JFrame {
 
         jSplitPane2.setLeftComponent(jSplitPane1);
 
+        jtpCompiler.setForeground(new java.awt.Color(158, 1, 1));
         jtpCompiler.setMinimumSize(new java.awt.Dimension(0, 0));
         jtpCompiler.setPreferredSize(new java.awt.Dimension(400, 300));
 
-        jp1.setBackground(new java.awt.Color(0, 0, 0));
         jp1.setMinimumSize(new java.awt.Dimension(400, 300));
 
-        jtLexical.setBackground(new java.awt.Color(51, 153, 255));
+        jtLexical.setBackground(new java.awt.Color(0, 0, 0));
         jtLexical.setForeground(new java.awt.Color(255, 255, 255));
         jtLexical.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -314,7 +321,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jp1Layout.setVerticalGroup(
@@ -327,9 +334,6 @@ public class Zapphire extends javax.swing.JFrame {
 
         jtpCompiler.addTab("Léxico", jp1);
 
-        jp2.setBackground(new java.awt.Color(0, 0, 0));
-
-        jtSyntactic.setBackground(new java.awt.Color(51, 153, 255));
         jScrollPane1.setViewportView(jtSyntactic);
 
         javax.swing.GroupLayout jp2Layout = new javax.swing.GroupLayout(jp2);
@@ -338,7 +342,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 371, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jp2Layout.setVerticalGroup(
@@ -351,9 +355,38 @@ public class Zapphire extends javax.swing.JFrame {
 
         jtpCompiler.addTab("Sintáctico", jp2);
 
-        jp3.setBackground(new java.awt.Color(0, 0, 0));
-
-        jtSemantic.setBackground(new java.awt.Color(51, 153, 255));
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Arbol Semantico");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Declaraciones");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("blue");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("violet");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("red");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("yellow");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Sentencias");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("basketball");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("soccer");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("football");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hockey");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("food");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("hot dogs");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("pizza");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("ravioli");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("bananas");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        jtSemantic.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         jScrollPane5.setViewportView(jtSemantic);
 
         javax.swing.GroupLayout jp3Layout = new javax.swing.GroupLayout(jp3);
@@ -362,7 +395,7 @@ public class Zapphire extends javax.swing.JFrame {
             jp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 362, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jp3Layout.setVerticalGroup(
@@ -379,7 +412,7 @@ public class Zapphire extends javax.swing.JFrame {
         jp4.setLayout(jp4Layout);
         jp4Layout.setHorizontalGroup(
             jp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 389, Short.MAX_VALUE)
+            .addGap(0, 391, Short.MAX_VALUE)
         );
         jp4Layout.setVerticalGroup(
             jp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -392,7 +425,9 @@ public class Zapphire extends javax.swing.JFrame {
 
         getContentPane().add(jSplitPane2, java.awt.BorderLayout.CENTER);
 
-        jMenuBar1.setBackground(new java.awt.Color(0, 153, 255));
+        jMenuBar1.setBackground(new java.awt.Color(0, 0, 0));
+        jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
+        jMenuBar1.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
 
         jmFile.setText("Archivo");
 
@@ -643,20 +678,21 @@ public class Zapphire extends javax.swing.JFrame {
 			}
 			//UIManager.setLookAndFeel( SyntheticaBlackEyeLookAndFeel.class.getName() );
 		} catch ( ClassNotFoundException ex ) {
-			java.util.logging.Logger.getLogger( Zapphire.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+			java.util.logging.Logger.getLogger(Juicy.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
 		} catch ( InstantiationException ex ) {
-			java.util.logging.Logger.getLogger( Zapphire.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+			java.util.logging.Logger.getLogger(Juicy.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
 		} catch ( IllegalAccessException ex ) {
-			java.util.logging.Logger.getLogger( Zapphire.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+			java.util.logging.Logger.getLogger(Juicy.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
 		} catch ( javax.swing.UnsupportedLookAndFeelException ex ) {
-			java.util.logging.Logger.getLogger( Zapphire.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
+			java.util.logging.Logger.getLogger(Juicy.class.getName() ).log( java.util.logging.Level.SEVERE, null, ex );
 		}
+		//</editor-fold>
 		//</editor-fold>
 
 		/* Create and display the form */
-		java.awt.EventQueue.invokeLater( new Runnable() {
+		java.awt.EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				new Zapphire().setVisible( true );
+				new Juicy().setVisible( true );
 			}
 		} );
 	}

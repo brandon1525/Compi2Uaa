@@ -1,5 +1,8 @@
 package CompilerResources;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 
 /**
