@@ -1,5 +1,5 @@
-accion incorrecta 12 
-accion incorrecta 15 
-accion incorrecta 16 
-accion incorrecta 19 
-Error de semántica en la linea: 40 variable 'mas' no declarada
+Error de semántica en la línea: 12 no se puede realizarla asignación tipo CONST_INT diferente a CONST_FLOAT 
+Error de semántica en la línea: 17 no se puede realizarla asignación tipo CONST_INT diferente a NULL 
+Error de semántica en la línea: 18 no se puede realizarla asignación tipo CONST_INT diferente a NULL 
+Error de semántica en la línea: 21 no se puede realizarla asignación tipo CONST_INT diferente a CONST_FLOAT 
+Error de semántica en la linea: 42 variable 'mas' no declarada

@@ -132,7 +132,9 @@ public class Semantic {
                            t.setExpressionConst(nodeExpression.getExpressionConst());
                            
                        }else{
-                           errors=errors+"accion incorrecta "+nodeId.getLine()+" \n";
+                           errors=errors+"Error de semántica en la línea: "+nodeId.getLine()+" no se puede realizar"
+                                   + "la asignación tipo "+getTypeInHashTable(nodeId.getName())+" diferente a "
+                                   + nodeExpression.getExpressionConst()+" \n";
                        } 
                     }
                     break;
