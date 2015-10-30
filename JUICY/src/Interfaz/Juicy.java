@@ -1,7 +1,6 @@
-package GUI;
+package Interfaz;
 
-import Class.FileManager;
-import Compiler.Compiler;
+import Compilador.Compiler;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.regex.Matcher;
@@ -14,8 +13,8 @@ import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 
 /**
- * @author Christian Israel López Villalobos
- * @author Héctor Daniel Montañez Briano
+ * @author Brandon Rodríguez
+
  */
 public class Juicy extends javax.swing.JFrame {
 
@@ -172,8 +171,6 @@ public class Juicy extends javax.swing.JFrame {
 
         getContentPane().add(jtbTools, java.awt.BorderLayout.NORTH);
 
-        jlLineColumn.setBackground(new java.awt.Color(0, 0, 0));
-        jlLineColumn.setForeground(new java.awt.Color(0, 255, 204));
         jlLineColumn.setText("    linea 1, columna 1");
         jlLineColumn.setToolTipText("");
         jlLineColumn.setOpaque(true);
@@ -248,8 +245,7 @@ public class Juicy extends javax.swing.JFrame {
 
         jtpOut.addTab("Resultados", jpResults);
 
-        jpHashTable.setBackground(new java.awt.Color(0, 0, 0));
-        jpHashTable.setForeground(new java.awt.Color(0, 204, 204));
+        jScrollPane4.setBackground(new java.awt.Color(255, 255, 255));
 
         jtHashTable.setAutoCreateRowSorter(true);
         jtHashTable.setBackground(new java.awt.Color(0, 0, 0));
@@ -705,7 +701,7 @@ public class Juicy extends javax.swing.JFrame {
 		//setExtendedState( JFrame.MAXIMIZED_BOTH );
 		enableButtons( false );
 		setDefaultCloseOperation( javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE );
-		setIconImage( new ImageIcon( getClass().getResource( "/Icons/weed.png" ) ).getImage() );
+		setIconImage( new ImageIcon( getClass().getResource( "/Icons/juicy.png" ) ).getImage() );
 		jtpTabs.requestFocus();
 
 		jSplitPane2.setDividerLocation( this.getWidth() - ( this.getWidth() / 3 - 50 ) );
@@ -761,31 +757,38 @@ public class Juicy extends javax.swing.JFrame {
 		String name = FileManager.getName( getComponentSelected().getPathFile() );
 
 		// Ejecutamos el compilador
+                char [] m = name.toCharArray();
+                name="";
+                for(int i=0;i<m.length-1;i++){
+                    name=name+m[i];
+                }
+                System.out.println(name);
+                
 		compiler = new Compiler( path, name );
 
 		// Léxico
-		jtpCompiler.setTitleAt( 0, "Léxico | " + name + ".zph" );
-		jtpOut.setTitleAt( 0, "Errores | " + name + ".zph" );
-		jtLexical.setModel( FileManager.getDefaultTableModel( path + "/" + name + ".lzph" ) );
+		jtpCompiler.setTitleAt( 0, "Léxico | " + name + ".java" );
+		jtpOut.setTitleAt( 0, "Errores | " + name + ".java" );
+		jtLexical.setModel( FileManager.getDefaultTableModel( path + "/" + name + ".ljava" ) );
 
 		// Sintáctico
 		if ( compiler.lexicalReady ) {
-			jtpCompiler.setTitleAt( 1, "Sintáctico | " + name + ".zph" );
+			jtpCompiler.setTitleAt( 1, "Sintáctico | " + name + ".java" );
 			jtSyntactic.setModel( compiler.syntactic.getDefaultTreeModel() );
 			expandAllNodes( jtSyntactic );
 		}
 		
 		// Semántico
 		if( compiler.syntacticReady ) {
-			jtpOut.setTitleAt( 2, "Tabla Hash | " + name + ".zph" );
+			jtpOut.setTitleAt( 2, "Tabla Hash | " + name + ".java" );
 			jtHashTable.setModel( compiler.semantic.getDefaultTableModel() );
-			jtpCompiler.setTitleAt( 2, "Semántico | " + name + ".zph" );
+			jtpCompiler.setTitleAt( 2, "Semántico | " + name + ".java" );
 			jtSemantic.setModel( compiler.semantic.getDefaultTreeModel() );
 			expandAllNodes( jtSemantic );
 		}
 
 		// Errores
-		jtaErrors.setText( FileManager.open( path + "/" + name + ".ezph", false ) );
+		jtaErrors.setText( FileManager.open( path + "/" + name + ".ejava", false ) );
 		jtaErrors.setCaretPosition( 0 );
 
 		if ( !jcbmiHidePanelCompiler.getState() ) {

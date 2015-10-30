@@ -1,12 +1,12 @@
-package Compiler;
+package Compilador;
 
-import Class.FileManager;
-import CompilerResources.SyntacticTreeNode;
+import Interfaz.FileManager;
+import RecursosCompi.SyntacticTreeNode;
 import java.util.Enumeration;
 
 /**
- * @author Christian Israel López Villalobos
- * @author Héctor Daniel Montañez Briano
+ * @author Brandon Rodriguez
+ * @author José Antonio
  */
 public class Compiler {
 	
@@ -18,6 +18,7 @@ public class Compiler {
 	
 	public Compiler( String path, String name ) {
 		lexical = new Lexical( path, name );
+                System.out.println("path "+path+" name "+name);
 		errors = lexical.getErrors();
 		if( errors.isEmpty() ) {						// Sin errores en el léxico
 			lexicalReady = true;
@@ -39,7 +40,7 @@ public class Compiler {
 			lexicalReady = false;
 		}
 		// Anexamos al archivo de errores, los errores del análisis léxico y sintáctico
-		FileManager.save( path + "/" + name + ".ezph", errors );
+		FileManager.save( path + "/" + name + ".ejava", errors );
 	}
 
 }

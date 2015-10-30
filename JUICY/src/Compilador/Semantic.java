@@ -1,13 +1,13 @@
-package Compiler;
+package Compilador;
 
-import CompilerResources.DeclarationKind;
-import CompilerResources.DeclarationType;
-import CompilerResources.ExpressionConst;
-import CompilerResources.ExpressionKind;
-import CompilerResources.HashTable;
-import CompilerResources.NodeKind;
-import CompilerResources.StatementKind;
-import CompilerResources.SyntacticTreeNode;
+import RecursosCompi.DeclarationKind;
+import RecursosCompi.DeclarationType;
+import RecursosCompi.ExpressionConst;
+import RecursosCompi.ExpressionKind;
+import RecursosCompi.HashTable;
+import RecursosCompi.NodeKind;
+import RecursosCompi.StatementKind;
+import RecursosCompi.SyntacticTreeNode;
 import java.util.ArrayList;
 import java.util.Enumeration;
 import javax.swing.table.DefaultTableModel;
@@ -290,9 +290,9 @@ public class Semantic {
 		case EXPRESSION:
                     if ( node.getExpressionKind() == ExpressionKind.OP || node.getExpressionKind() == ExpressionKind.ID ) {
 			if ( node.getExpressionConst() != ExpressionConst.CONST_FLOAT ) {
-                            node.setName( node.getName() + "    [ " + ( int ) node.getValue() + " ]" );
+                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			} else {
-                            node.setName( node.getName() + "    [ " + node.getValue() + " ]" );
+                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			}
                     }
                     break;
@@ -303,9 +303,10 @@ public class Semantic {
 		case STATEMENT:
                     if( node.getStatementKind() == StatementKind.ASSING ) {
 			if ( node.getExpressionConst() != ExpressionConst.CONST_FLOAT ) {
-                            node.setName( node.getName() + "    [ " + ( int ) node.getValue() + " ]" );
+                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			} else {
-                            node.setName( node.getName() + "    [ " + node.getValue() + " ]" );
+                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
+                            
 			}
                     }
             }

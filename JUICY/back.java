@@ -1,6 +1,7 @@
 program{
 	int x,y,z;
 	float a, b, c;
+	float x;
 	int w;
 	bool xx;
 	x:=23;

@@ -1,4 +1,4 @@
-package GUI;
+package Interfaz;
 
 import java.awt.*;
 import java.beans.*;

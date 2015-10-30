@@ -1,7 +1,14 @@
-package Compiler;
+package Compilador;
 
-import CompilerResources.*;
-import Class.FileManager;
+import RecursosCompi.TokenType;
+import RecursosCompi.DeclarationType;
+import RecursosCompi.StatementKind;
+import RecursosCompi.SyntacticTreeNode;
+import RecursosCompi.ExpressionConst;
+import RecursosCompi.DeclarationKind;
+import RecursosCompi.ExpressionOp;
+import RecursosCompi.ExpressionKind;
+import Interfaz.FileManager;
 import com.sun.org.apache.xalan.internal.xsltc.compiler.SyntaxTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 
@@ -18,7 +25,7 @@ public class Syntactic {
 		this.path = path;
 		this.name = name;
 		this.line = -1;
-		this.tokens = FileManager.getTokens( this.path + "/" + this.name + ".lzph" );
+		this.tokens = FileManager.getTokens( this.path + "/" + this.name + ".ljava" );
 		this.errors = "";
 		getToken();
 		this.root = program();
@@ -278,6 +285,7 @@ public class Syntactic {
 			expressionOperator.setExpressionOp( operator.equals( "+" ) ? ExpressionOp.PLUS : ExpressionOp.MINUS );
 			expressionOperator.add( SyntacticTreeNode.newExpressionNode(expressionId.getName(), ExpressionKind.ID, getLineToken()) );
 			expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
+                        //expressionConst.setExpressionConst(ExpressionConst.CONST_INT);
 			expressionConst.setValue( 1 );
 			expressionOperator.add( expressionConst );
 			t.add( expressionOperator );

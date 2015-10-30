@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package Interfaz;
 
-import Class.FileManager;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -93,7 +92,7 @@ public class TabPanel extends JScrollPane implements ActionListener, KeyListener
 
 		textPane = new JTextPane();
 		styleContext = StyleContext.getDefaultStyleContext();
-		textPane.setFont( new Font( "Monospaced", Font.TRUETYPE_FONT, 18 ) );
+		textPane.setFont( new Font( "Comic Sans MS", Font.TRUETYPE_FONT, 18 ) );
 		textPane.setBackground(new Color(73, 72, 62));
 		textLineNumber = new TextLineNumber( textPane );
 		setViewportView( textPane );

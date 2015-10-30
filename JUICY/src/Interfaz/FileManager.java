@@ -1,4 +1,4 @@
-package Class;
+package Interfaz;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -10,7 +10,7 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Christian Israel Lopez Villalobos
+ * @author Brandon Rodriguez
  */
 public class FileManager {
 	

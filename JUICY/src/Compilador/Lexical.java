@@ -1,9 +1,9 @@
-package Compiler;
+package Compilador;
 
-import CompilerResources.States;
-import CompilerResources.Token;
-import CompilerResources.TokenType;
-import Class.FileManager;
+import RecursosCompi.States;
+import RecursosCompi.Token;
+import RecursosCompi.TokenType;
+import Interfaz.FileManager;
 import java.util.ArrayList;
 
 /**
@@ -22,7 +22,7 @@ public class Lexical {
 		this.name = name;
 		this.errors = "";
 		reservedWords();
-		code = FileManager.open( this.path + "/" + this.name + ".zph", true );
+		code = FileManager.open( this.path + "/" + this.name + ".java", true );
 		start();
 	}
 	
@@ -40,7 +40,7 @@ public class Lexical {
 				lexico += token.getType().name() + " " + token.getLexema() + " " + line + " " + ( column - token.getLexema().length() +1 ) + "\n";
 			}
 		}
-		FileManager.save( path + "/" + name + ".lzph", lexico );
+		FileManager.save( path + "/" + name + ".ljava", lexico );
 	}
 	
 	private boolean isDelimiter( char c ) {

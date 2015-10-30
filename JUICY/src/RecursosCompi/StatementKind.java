@@ -1,4 +1,4 @@
-package CompilerResources;
+package RecursosCompi;
 
 /**
  * @author Christian Israel López Villalobos

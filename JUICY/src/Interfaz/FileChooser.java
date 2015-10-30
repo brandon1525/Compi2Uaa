@@ -1,4 +1,4 @@
-package GUI;
+package Interfaz;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -6,7 +6,7 @@ import javax.swing.filechooser.FileSystemView;
 
 /**
  *
- * @author Garu Lovilla
+ * @author Brandon Alan
  */
 public class FileChooser extends JFrame {
 
@@ -16,7 +16,7 @@ public class FileChooser extends JFrame {
 
 	public FileChooser() {
 		fileChooser = new JFileChooser( FileSystemView.getFileSystemView() );
-		fileChooser.setFileFilter( new FileNameExtensionFilter( "Archivos de Zapphire", "zph" ) );
+		fileChooser.setFileFilter( new FileNameExtensionFilter( "Archivos de JUICY", "java" ) );
 		fileChooser.setMultiSelectionEnabled( false );
 	}
 
@@ -26,8 +26,8 @@ public class FileChooser extends JFrame {
 		respuesta = fileChooser.showSaveDialog( this );
 		if ( respuesta == JFileChooser.APPROVE_OPTION ) {
 			ruta = fileChooser.getSelectedFile().getPath();
-			if( !ruta.endsWith( ".zph" ) )
-				ruta += ".zph";
+			if( !ruta.endsWith( ".java" ) )
+				ruta += ".java";
 			return ruta;
 		}
 		return null;
@@ -38,10 +38,10 @@ public class FileChooser extends JFrame {
 		fileChooser.setDialogTitle( "Seleccionar el archivo a abrir" );
 		respuesta = fileChooser.showOpenDialog( this );
 		if ( respuesta == JFileChooser.APPROVE_OPTION ) {
-			if( fileChooser.getSelectedFile().getPath().endsWith( ".zph" ) )
+			if( fileChooser.getSelectedFile().getPath().endsWith( ".java" ) )
 				return fileChooser.getSelectedFile().getPath();
 			else
-				JOptionPane.showMessageDialog( null, "La extensión del archivo no es correcta, favor de seleccionar un archivo con extensión .zph", "Extensión del archivo incorrecta", JOptionPane.ERROR_MESSAGE );
+				JOptionPane.showMessageDialog( null, "La extensión del archivo no es correcta, favor de seleccionar un archivo con extensión .java", "Extensión del archivo incorrecta", JOptionPane.ERROR_MESSAGE );
 		}
 		return null;
 	}

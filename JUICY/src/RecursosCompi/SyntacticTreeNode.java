@@ -1,14 +1,11 @@
-package CompilerResources;
+package RecursosCompi;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.tree.DefaultMutableTreeNode;
 
-/**
- * @author Christian Israel López Villalobos
- * @author Héctor Daniel Montañez Briano
- */
+
 public class SyntacticTreeNode extends DefaultMutableTreeNode {
 	
 	private NodeKind nodeKind;
