@@ -703,7 +703,7 @@ public class Juicy extends javax.swing.JFrame {
 		setDefaultCloseOperation( javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE );
 		setIconImage( new ImageIcon( getClass().getResource( "/Icons/juicy.png" ) ).getImage() );
 		jtpTabs.requestFocus();
-
+                
 		jSplitPane2.setDividerLocation( this.getWidth() - ( this.getWidth() / 3 - 50 ) );
 		jSplitPane1.setDividerLocation( this.getHeight() / 2 );
             // Abrimos un archivo por defecto

@@ -1,6 +1,7 @@
 package RecursosCompi;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * @author Christian Israel López Villalobos
@@ -73,6 +74,7 @@ public class HashTable {
 	
 	public void addLine( int line ) {
 		lineList.add( line );
+                Collections.sort(lineList);
 	}
 	
 	public String getLineList() {
@@ -80,7 +82,9 @@ public class HashTable {
 		for( Integer line : lineList ) {
 			temp += line + " ";
 		}
+                Collections.sort(lineList);
 		return temp;
+                
 	}
         
 }

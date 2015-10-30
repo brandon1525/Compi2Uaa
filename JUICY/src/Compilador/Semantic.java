@@ -8,10 +8,14 @@ import RecursosCompi.HashTable;
 import RecursosCompi.NodeKind;
 import RecursosCompi.StatementKind;
 import RecursosCompi.SyntacticTreeNode;
+import java.beans.Expression;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Enumeration;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultTreeModel;
+import java.math.*;
 
 public class Semantic {
     public static final int SHIFT = 4;
@@ -92,11 +96,14 @@ public class Semantic {
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
                     posEval(nodeExpression);
                     break;
-		        case DO:
-                    nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 1 );
+		case DO:
+                    nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
+                    SyntacticTreeNode casi = (SyntacticTreeNode) t.getChildAt(1);
+                    posEval(casi);
                     posEval(nodeExpression);
+                    
                     break;
-		        case WRITE:
+		case WRITE:
                     nodeExpression = ( SyntacticTreeNode ) t.getChildAt( 0 );
                     if(nodeExpression.getExpressionKind()==ExpressionKind.ID){
                         insertNewLineHashTable(nodeExpression.getName(),nodeExpression.getLine());
@@ -104,6 +111,7 @@ public class Semantic {
                     }
                     posEval(nodeExpression);
                     break;
+                
 		        case ASSING:
                     nodeId = ( ( SyntacticTreeNode ) t.getChildAt( 0 ) );
                     nodeExpression = ( (SyntacticTreeNode) t.getChildAt( 1 ) );
@@ -125,6 +133,11 @@ public class Semantic {
                                (nodeExpression.getValue()==0 || nodeExpression.getValue()==1)
                                )
                         ){
+    
+                           if(getTypeInHashTable(nodeId.getName())== ExpressionConst.CONST_INT && nodeExpression.getExpressionConst()== ExpressionConst.CONST_INT){
+                               int temp = (int)nodeExpression.getValue();
+                               nodeExpression.setValue(temp);
+                          }
                            nodeId.setValue(nodeExpression.getValue());
                            nodeId.setExpressionConst(nodeExpression.getExpressionConst());
                            setValueInHashTable(nodeId.getName(), nodeExpression.getValue());
@@ -182,8 +195,12 @@ public class Semantic {
                     leftChild.setExpressionConst( leftChildConst );		}
 		break;
             case CONSTANT: case OP:
+                
                 leftChildValue = leftChild.getValue();
 		leftChildConst = leftChild.getExpressionConst();
+                if(leftChildConst==ExpressionConst.CONST_INT){
+                    leftChildValue=(int)leftChildValue;
+                }
 		break;
 	}
 
@@ -201,6 +218,9 @@ public class Semantic {
             case CONSTANT: case OP:
 		rightChildValue = rightChild.getValue();
 		rightChildConst = rightChild.getExpressionConst();
+                if(rightChildConst==ExpressionConst.CONST_INT){
+                    rightChildValue=(int)rightChildValue;
+                }
 		break;
 	}
 		
@@ -214,21 +234,39 @@ public class Semantic {
             t.setExpressionConst( ExpressionConst.CONST_FLOAT );
 	} else {
             t.setExpressionConst( ExpressionConst.CONST_INT );
+            
 	}
-
+        if((leftChildConst==ExpressionConst.CONST_INT || leftChild.getExpressionConst()==ExpressionConst.CONST_INT)&& (rightChildConst==ExpressionConst.CONST_INT || rightChild.getExpressionConst()==ExpressionConst.CONST_INT)){
+            leftChildValue=(int)leftChildValue;
+            rightChildValue=(int)rightChildValue;
+        }else{
+            
+        }
 	// Asignación de valor
 	switch ( t.getExpressionOp() ) {
             case PLUS:
 		t.setValue( leftChildValue + rightChildValue );
+                if(t.getExpressionConst()==ExpressionConst.CONST_INT){
+                    t.setValue((int)(leftChildValue+rightChildValue));
+                }
 		break;
             case MINUS:
 		t.setValue( leftChildValue - rightChildValue );
+                if(t.getExpressionConst()==ExpressionConst.CONST_INT){
+                    t.setValue((int)(leftChildValue-rightChildValue));
+                }
 		break;
             case MULTI:
 		t.setValue( leftChildValue * rightChildValue );
+                if(t.getExpressionConst()==ExpressionConst.CONST_INT){
+                    t.setValue((int)(leftChildValue*rightChildValue));
+                }
 		break;
             case DIV:
 		t.setValue( leftChildValue / rightChildValue );
+                if(t.getExpressionConst()==ExpressionConst.CONST_INT){
+                    t.setValue((int)(leftChildValue*rightChildValue));
+                }
 		break;
             case LESS:
                 if ( leftChildValue < rightChildValue ) {
@@ -292,7 +330,7 @@ public class Semantic {
 			if ( node.getExpressionConst() != ExpressionConst.CONST_FLOAT ) {
                             node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			} else {
-                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
+                            node.setName( node.getName() + "    [ " + (int)node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
 			}
                     }
                     break;
@@ -303,7 +341,7 @@ public class Semantic {
 		case STATEMENT:
                     if( node.getStatementKind() == StatementKind.ASSING ) {
 			if ( node.getExpressionConst() != ExpressionConst.CONST_FLOAT ) {
-                            node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
+                            node.setName( node.getName() + "    [ " + Math.round(node.getValue()) + " ] [ "+node.getExpressionConst()+" ]" );
 			} else {
                             node.setName( node.getName() + "    [ " + node.getValue() + " ] [ "+node.getExpressionConst()+" ]" );
                             

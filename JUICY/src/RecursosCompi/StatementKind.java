@@ -5,5 +5,5 @@ package RecursosCompi;
  * @author Héctor Daniel Montañez Briano
  */
 public enum StatementKind {
-    PROGRAM, IF, WHILE, DO, READ, WRITE, BLOCK, ASSING, NULL
+    PROGRAM, IF, WHILE, DO, READ, WRITE, BLOCK, ASSING,UNTIL, NULL
 }
