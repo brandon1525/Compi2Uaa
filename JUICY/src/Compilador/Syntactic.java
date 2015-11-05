@@ -217,83 +217,86 @@ public class Syntactic {
 		return t;
 	}
 	
-	// asignación → identificador := expresión ;
+	// asignación → identificador := expresión ; id++,id--;
 	private SyntacticTreeNode assignStmt() {
-		SyntacticTreeNode expressionId = null;
-		if ( token == TokenType.ID ) {
-			expressionId = SyntacticTreeNode.newExpressionNode( getComponetToken(), ExpressionKind.ID, getLineToken() );
-			String id = expressionId.getName();		// nombre del id
-			match( TokenType.ID );
-			SyntacticTreeNode statementAssing, expressionOperator, expressionConst;
-			switch( token ) {
-				case ASSIGN:
-					statementAssing = SyntacticTreeNode.newStatementNode( getComponetToken(), StatementKind.ASSING, getLineToken() );
-					statementAssing.add( expressionId );
-					expressionId = statementAssing;
-					match( TokenType.ASSIGN );
-					expressionId.add( exp() );
-					break;
-				case INC:
-					match( TokenType.INC );
-					statementAssing = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
-					statementAssing.add( expressionId );
-					expressionId = statementAssing;
-					expressionOperator = SyntacticTreeNode.newExpressionNode( "+", ExpressionKind.OP, getLineToken() );
-					expressionOperator.setExpressionOp( ExpressionOp.PLUS );
-					expressionOperator.add( SyntacticTreeNode.newExpressionNode( id, ExpressionKind.ID, getLineToken() ) );
-					expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
-					expressionConst.setValue( 1 );
-					expressionOperator.add( expressionConst );
-					expressionId.add( expressionOperator );
-					break;
-				case DEC:
-					match( TokenType.DEC );
-					statementAssing = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
-					statementAssing.add( expressionId );
-					expressionId = statementAssing;
-					expressionOperator = SyntacticTreeNode.newExpressionNode( "-", ExpressionKind.OP, getLineToken() );
-					expressionOperator.setExpressionOp( ExpressionOp.MINUS );
-					expressionOperator.add( SyntacticTreeNode.newExpressionNode( id, ExpressionKind.ID, getLineToken() ) );
-					expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
-					expressionConst.setValue( 1 );
-					expressionOperator.add( expressionConst );
-					expressionId.add( expressionOperator );
-					break;
-			}
-			match( TokenType.SEMICOLON );
-		}
-		return expressionId;
-	}
-	
-	//++id --id
-	private SyntacticTreeNode incDecStmt() {
-		SyntacticTreeNode t = new SyntacticTreeNode(), statementAssing, expressionOperator, expressionId, expressionConst;
-		if( token == TokenType.INC || token == TokenType.DEC ) {
-			String operator=getComponetToken();
-			//operator = getComponetToken().equals( "++" ) ? "+" : "-";
-			if("++".equals(operator)){
-				operator="+";
-			}else{
-				operator="-";
-			}
-			match( token );
-			statementAssing = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
-			expressionId = SyntacticTreeNode.newExpressionNode( getComponetToken(), ExpressionKind.ID, getLineToken() );
+            SyntacticTreeNode expressionId = null;
+            if ( token == TokenType.ID ) {
+                expressionId = SyntacticTreeNode.newExpressionNode( getComponetToken(), ExpressionKind.ID, getLineToken() );
+                String id = expressionId.getName();		// nombre del id
+                match( TokenType.ID );
+                SyntacticTreeNode statementAssing, expressionOperator, expressionConst;
+                switch( token ) {
+                    case ASSIGN:
+                        statementAssing = SyntacticTreeNode.newStatementNode( getComponetToken(), StatementKind.ASSING, getLineToken() );
+                        statementAssing.add( expressionId );
+			expressionId = statementAssing;
+			match( TokenType.ASSIGN );
+			expressionId.add( exp() );
+			break;
+                    case INC:
+			match( TokenType.INC );
+                        statementAssing = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
 			statementAssing.add( expressionId );
-			t = statementAssing;
-			expressionOperator = SyntacticTreeNode.newExpressionNode( operator, ExpressionKind.OP, getLineToken() );
-			expressionOperator.setExpressionOp( operator.equals( "+" ) ? ExpressionOp.PLUS : ExpressionOp.MINUS );
-			expressionOperator.add( SyntacticTreeNode.newExpressionNode(expressionId.getName(), ExpressionKind.ID, getLineToken()) );
+			expressionOperator = SyntacticTreeNode.newExpressionNode( "+", ExpressionKind.OP, getLineToken() );
+			expressionOperator.setExpressionOp( ExpressionOp.PLUS );
+			expressionOperator.add( SyntacticTreeNode.newExpressionNode( id, ExpressionKind.ID, getLineToken() ) );
 			expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
                         expressionConst.setExpressionConst(ExpressionConst.CONST_INT);
 			expressionConst.setValue( 1 );
 			expressionOperator.add( expressionConst );
-			t.add( expressionOperator );
-			match( TokenType.ID );
-			match( TokenType.SEMICOLON );
-		}
-		return t;
-	}
+                        statementAssing.add(expressionOperator);
+                        expressionId=statementAssing;
+                        break;
+                    case DEC:
+			match( TokenType.DEC );
+			statementAssing = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
+			statementAssing.add( expressionId );
+			expressionOperator = SyntacticTreeNode.newExpressionNode( "-", ExpressionKind.OP, getLineToken() );
+			expressionOperator.setExpressionOp( ExpressionOp.MINUS );
+			expressionOperator.add( SyntacticTreeNode.newExpressionNode( id, ExpressionKind.ID, getLineToken() ) );
+			expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
+                        expressionConst.setExpressionConst(ExpressionConst.CONST_INT);
+			expressionConst.setValue( 1 );
+			expressionOperator.add( expressionConst );
+                        statementAssing.add(expressionOperator);
+                        expressionId=statementAssing;
+                        break;
+                    }
+                    match( TokenType.SEMICOLON );
+                }
+                return expressionId;
+            }
+	
+	//++id --id
+	private SyntacticTreeNode incDecStmt() {
+            SyntacticTreeNode t = new SyntacticTreeNode(), statementAssing, expressionOperator, expressionId, expressionConst;
+            if( token == TokenType.INC || token == TokenType.DEC ) {
+                String operator="";
+                switch (token) {
+                    case INC:
+                        operator="+";
+                        break;
+                    case DEC:
+                        operator="-";
+                        break;
+                }
+                match( token );
+                t = SyntacticTreeNode.newStatementNode( ":=", StatementKind.ASSING, getLineToken() );
+                expressionId = SyntacticTreeNode.newExpressionNode( getComponetToken(), ExpressionKind.ID, getLineToken() );
+                t.add( expressionId );
+                expressionOperator = SyntacticTreeNode.newExpressionNode( operator, ExpressionKind.OP, getLineToken() );
+                expressionOperator.setExpressionOp( operator.equals( "+" ) ? ExpressionOp.PLUS : ExpressionOp.MINUS );
+                expressionConst = SyntacticTreeNode.newExpressionNode( "1", ExpressionKind.CONSTANT, getLineToken() );
+                expressionConst.setExpressionConst(ExpressionConst.CONST_INT);
+                expressionConst.setValue( 1 );
+                expressionOperator.add( SyntacticTreeNode.newExpressionNode( expressionId.getName(), ExpressionKind.ID, getLineToken() ) );
+                expressionOperator.add( expressionConst );
+                t.add(expressionOperator);
+                match( TokenType.ID );
+                match( TokenType.SEMICOLON );
+            }
+            return t;
+        }
 	
 	// bloque → { lista-sentencia }
 	private SyntacticTreeNode block( String name ) {

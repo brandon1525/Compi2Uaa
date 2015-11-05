@@ -8,14 +8,10 @@ import RecursosCompi.HashTable;
 import RecursosCompi.NodeKind;
 import RecursosCompi.StatementKind;
 import RecursosCompi.SyntacticTreeNode;
-import java.beans.Expression;
-import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Enumeration;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.tree.DefaultTreeModel;
-import java.math.*;
 
 public class Semantic {
     public static final int SHIFT = 4;
@@ -112,7 +108,6 @@ public class Semantic {
                         nodeExpression.setExpressionConst(getTypeInHashTable(nodeExpression.getName()));
                         t.setValue(nodeExpression.getValue());
                         t.setExpressionConst(nodeExpression.getExpressionConst());
-                        
                     }
                     break;
 		case WRITE:
@@ -134,7 +129,7 @@ public class Semantic {
                     //posEval(nodeExpression);
                     break;
                 
-		        case ASSING:
+		case ASSING:
                     nodeId = ( ( SyntacticTreeNode ) t.getChildAt( 0 ) );
                     nodeExpression = ( (SyntacticTreeNode) t.getChildAt( 1 ) );
                     if(insertNewLineHashTable(nodeId.getName(), nodeId.getLine())){
