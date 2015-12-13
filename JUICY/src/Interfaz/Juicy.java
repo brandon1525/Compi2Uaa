@@ -1,8 +1,14 @@
 package Interfaz;
 
 import Compilador.Compiler;
+import RecursosCompi.HashTable;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.KeyEvent;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.ImageIcon;
@@ -17,8 +23,13 @@ import javax.swing.text.Highlighter;
 
  */
 public class Juicy extends javax.swing.JFrame {
-
+    
+        String midCode;
+        VirtualMachine jm;
+        public StringBuffer code;
+        private ArrayList<HashTable> hashTable;
 	public Juicy() {
+                midCode="";
 		initComponents();
                 this.setExtendedState(MAXIMIZED_BOTH);
 		init();
@@ -48,6 +59,8 @@ public class Juicy extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jtaErrors = new javax.swing.JTextArea();
         jpResults = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
         jpHashTable = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jtHashTable = new javax.swing.JTable();
@@ -62,6 +75,8 @@ public class Juicy extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jtSemantic = new javax.swing.JTree();
         jp4 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTextPane1 = new javax.swing.JTextPane();
         jMenuBar1 = new javax.swing.JMenuBar();
         jmFile = new javax.swing.JMenu();
         jmiOpen = new javax.swing.JMenuItem();
@@ -224,7 +239,7 @@ public class Juicy extends javax.swing.JFrame {
         );
         jpErrorsLayout.setVerticalGroup(
             jpErrorsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Errores", jpErrors);
@@ -232,15 +247,22 @@ public class Juicy extends javax.swing.JFrame {
         jpResults.setBackground(new java.awt.Color(0, 0, 0));
         jpResults.setForeground(new java.awt.Color(204, 255, 255));
 
+        jTextPane2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextPane2KeyPressed(evt);
+            }
+        });
+        jScrollPane7.setViewportView(jTextPane2);
+
         javax.swing.GroupLayout jpResultsLayout = new javax.swing.GroupLayout(jpResults);
         jpResults.setLayout(jpResultsLayout);
         jpResultsLayout.setHorizontalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 794, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 792, Short.MAX_VALUE)
         );
         jpResultsLayout.setVerticalGroup(
             jpResultsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 243, Short.MAX_VALUE)
+            .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
         );
 
         jtpOut.addTab("Resultados", jpResults);
@@ -283,7 +305,7 @@ public class Juicy extends javax.swing.JFrame {
             jpHashTableLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpHashTableLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -324,7 +346,7 @@ public class Juicy extends javax.swing.JFrame {
             jp1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -345,7 +367,7 @@ public class Juicy extends javax.swing.JFrame {
             jp2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 443, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 392, Short.MAX_VALUE)
                 .addGap(13, 13, 13))
         );
 
@@ -398,21 +420,23 @@ public class Juicy extends javax.swing.JFrame {
             jp3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jp3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 445, Short.MAX_VALUE)
+                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jtpCompiler.addTab("Semántico", jp3);
 
+        jScrollPane6.setViewportView(jTextPane1);
+
         javax.swing.GroupLayout jp4Layout = new javax.swing.GroupLayout(jp4);
         jp4.setLayout(jp4Layout);
         jp4Layout.setHorizontalGroup(
             jp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 391, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE)
         );
         jp4Layout.setVerticalGroup(
             jp4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 467, Short.MAX_VALUE)
+            .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
         );
 
         jtpCompiler.addTab("Código intermedio", jp4);
@@ -653,6 +677,14 @@ public class Juicy extends javax.swing.JFrame {
         compile();
     }//GEN-LAST:event_jmiCompileActionPerformed
 
+    private void jTextPane2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextPane2KeyPressed
+        // TODO add your handling code here:
+        if(jm != null){
+            if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+                jm.ready = true;
+        }
+    }//GEN-LAST:event_jTextPane2KeyPressed
+
 	/**
 	 * @param args the command line arguments
 	 */
@@ -779,6 +811,7 @@ public class Juicy extends javax.swing.JFrame {
 		}
 		
 		// Semántico
+                
 		if( compiler.syntacticReady ) {
 			jtpOut.setTitleAt( 2, "Tabla Hash | " + name + ".java" );
 			jtHashTable.setModel( compiler.semantic.getDefaultTableModel() );
@@ -786,20 +819,31 @@ public class Juicy extends javax.swing.JFrame {
 			jtSemantic.setModel( compiler.semantic.getDefaultTreeModel() );
 			expandAllNodes( jtSemantic );
 		}
+                // Errores
+                    jtaErrors.setText( FileManager.open( path + "/" + name + ".ejava", false ) );
+                    jtaErrors.setCaretPosition( 0 );
+                    jTextPane2.setText("");
+                if(compiler.semanticReady){
+                    jTextPane1.setText(Compiler.getMidCode());
+                    code=Compiler.getCode();
+                    jTextPane2.setText("");
+                    hashTable=Compiler.getHashTable();
+                    
 
-		// Errores
-		jtaErrors.setText( FileManager.open( path + "/" + name + ".ejava", false ) );
-		jtaErrors.setCaretPosition( 0 );
-
-		if ( !jcbmiHidePanelCompiler.getState() ) {
+                    if ( !jcbmiHidePanelCompiler.getState() ) {
 			jcbmiHidePanelCompiler.setState( true );
 			showPanelCompiler();
-		}
+                    }
 
-		if ( !jcbmiHidePanelOut.getState() ) {
+                    if ( !jcbmiHidePanelOut.getState() ) {
 			jcbmiHidePanelOut.setState( true );
 			showPanelOut();
-		}
+                    }
+                    ejecuta();
+                }else{
+                    jTextPane1.setText("");
+                    jTextPane2.setText("");
+                }
 	}
 
 	private void find() {
@@ -898,6 +942,17 @@ public class Juicy extends javax.swing.JFrame {
 			tree.expandRow( i );
 		}
 	}
+        
+        private void ejecuta(){
+            new Thread(){
+            @Override
+            public void run(){
+                System.out.println("Inicio Hilo");
+                jm=new VirtualMachine(code, hashTable,jTextPane2.getStyledDocument());
+                jm.executeCode();
+            }
+        }.start();
+       }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
@@ -908,8 +963,12 @@ public class Juicy extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JSplitPane jSplitPane2;
+    private static javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
     private javax.swing.JButton jbCompile;
     private javax.swing.JButton jbFind;
     private javax.swing.JButton jbNew;
@@ -952,5 +1011,5 @@ public class Juicy extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jtpTabs;
     // End of variables declaration//GEN-END:variables
 	private FileChooser fileChooser;
-	private Compiler compiler;
+	public static Compiler compiler;
 }

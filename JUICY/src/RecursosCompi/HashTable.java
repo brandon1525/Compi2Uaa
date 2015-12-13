@@ -32,6 +32,18 @@ public class HashTable {
 		this.type = type;
 	}
 
+    public HashTable(int location, String type) {
+        this.location = location;
+        this.type = type;
+    }
+        
+        
+        
+        public HashTable(String name) {
+		this.name = name;
+		
+	}
+
 	public String getName() {
 		return name;
 	}

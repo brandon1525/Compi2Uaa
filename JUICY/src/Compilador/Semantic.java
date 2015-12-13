@@ -18,7 +18,7 @@ public class Semantic {
     public static final int SIZE = 211;
     private int location;
     private String errors = "";
-    private ArrayList<HashTable> hashTable;
+    public static ArrayList<HashTable> hashTable;
     private SyntacticTreeNode root;
     private DefaultTreeModel dtm;
 
@@ -169,7 +169,7 @@ public class Semantic {
                     }
                     break;
                 default:
-                    System.out.println("algo extraño "+t.getName());
+                    //System.out.println("algo extraño "+t.getName());
                     break;
             }
             
@@ -444,7 +444,7 @@ public class Semantic {
 	return 0;
     }
 	
-    private ExpressionConst getTypeInHashTable( String name ) {
+    private static ExpressionConst getTypeInHashTable( String name ) {
 	int hash = getHash( name );
 	for ( HashTable i : hashTable ) {
             if ( i.getHash() == hash && i.getName().equals( name ) ) {
@@ -461,14 +461,17 @@ public class Semantic {
 	return ExpressionConst.NULL;
     }
 
-    private HashTable serchHash( int hash ) {
-	for ( HashTable i : this.hashTable ) {
+    public static HashTable serchHash( int hash ) {
+	for ( HashTable i : Semantic.hashTable ) {
+            //System.out.println(i.getName()+"/"+i.getHash()+"    "+hash);
             if ( i.getHash() == hash ) {
 		return i;
             }
 	}
 	return null;
     }
+    
+    
     
     private String getType( DeclarationType type ) {
 	switch ( type ) {
@@ -524,4 +527,39 @@ public class Semantic {
 	}
 	return temp;
     }
+    
+    public  static int LocTabla( String name) {
+	int hash = getHash( name );
+	int loc = 0;
+	HashTable temp = serchHash( hash );
+            for ( HashTable i : hashTable ) {
+		if ( i.getHash() == hash && i.getName().equals( name ) ) {
+                    loc=i.getLocation();
+                    break;
+		}
+            }
+	
+	return loc;
+    }
+    
+    public  static String SacaTabla( String name) {
+	int hash = getHash( name );
+        String aux=null;
+	HashTable temp = serchHash( hash );
+            for ( HashTable i : hashTable ) {
+                //System.out.println(i.getName()+"/"+i.getLocation()+"/"+i.getType());
+		if ( i.getHash() == hash && i.getName().equals( name ) ) {
+                    aux=i.getType();
+                    break;
+		}
+            }
+	
+	return aux;
+    }
+
+    public ArrayList<HashTable> getHashTable() {
+        return hashTable;
+    }
+    
+    
 }

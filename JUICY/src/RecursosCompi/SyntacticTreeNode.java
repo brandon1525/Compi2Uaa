@@ -83,6 +83,10 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
 	public NodeKind getNodeKind() {
 		return nodeKind;
 	}
+        
+        public ExpressionOp getExpressionOp() {
+		return expressionOp;
+	}
 
 	public void setNodeKind( NodeKind nodeKind ) {
 		this.nodeKind = nodeKind;
@@ -119,6 +123,8 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
 	public void setExpressionType( ExpressionType expressionType ) {
 		this.expressionType = expressionType;
 	}
+        
+        
 
 	public ExpressionKind getExpressionKind() {
 		return expressionKind;
@@ -128,9 +134,7 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
 		this.expressionKind = expressionKind;
 	}
 
-	public ExpressionOp getExpressionOp() {
-		return expressionOp;
-	}
+	
 
 	public void setExpressionOp( ExpressionOp opkind ) {
 		this.expressionOp = opkind;
@@ -176,5 +180,27 @@ public class SyntacticTreeNode extends DefaultMutableTreeNode {
     public void setType(String type) {
         this.type = type;
     }
-        
+    
+    
+    public DefaultMutableTreeNode getHermano() {
+            DefaultMutableTreeNode nextSibling = getNextSibling();
+            if (nextSibling == null) {
+                DefaultMutableTreeNode aNode = (DefaultMutableTreeNode)getParent();
+
+                do {
+                    if (aNode == null) {
+                        return null;
+                    }
+
+                    nextSibling = aNode.getNextSibling();
+                    if (nextSibling != null) {
+                        return nextSibling;
+                    }
+
+                    aNode = (DefaultMutableTreeNode)aNode.getParent();
+                } while(true);
+            } else {
+                return nextSibling;
+            }
+    }    
 }
